@@ -3,7 +3,7 @@ public class TablaDeBingo extends Thread {
     public static int numeroAleatorioObtenido;
     private final int NUMERO_DE_FILAS = 5;
     private final int NUMERO_DE_COLUMNAS = 5;
-    private int[][] numeros = new int[NUMERO_DE_FILAS][NUMERO_DE_COLUMNAS];
+    private int[][] numerosDeLaTabla = new int[NUMERO_DE_FILAS][NUMERO_DE_COLUMNAS];
     private final int numeroDeTabla;
     private static TablaDeBingo tablaGanadora;
 
@@ -30,11 +30,11 @@ public class TablaDeBingo extends Thread {
 
                 //Pero la siguiente parte +(i*15) es para iniciar mas arriba la suma
 
-                numeros[i][j] = ((int) Math.floor(Math.random() * (15 - 1 + 1) + 1)) + (i * 15);
+                numerosDeLaTabla[i][j] = ((int) Math.floor(Math.random() * (15 - 1 + 1) + 1)) + (i * 15);
 
                 //Para que no se repitan los numeros
-                while (!esteNumeroEsDiferenteALosDemas(numeros[i], numeros[i][j], j)) {
-                    numeros[i][j] = ((int) Math.floor(Math.random() * (15 - 1 + 1) + 1)) + (i * 15);
+                while (!esteNumeroEsDiferenteALosDemas(numerosDeLaTabla[i], numerosDeLaTabla[i][j], j)) {
+                    numerosDeLaTabla[i][j] = ((int) Math.floor(Math.random() * (15 - 1 + 1) + 1)) + (i * 15);
                 }
             }
         }
@@ -69,16 +69,16 @@ public class TablaDeBingo extends Thread {
     }
 
     private boolean lasCuatroEsquinasEstanMarcadas() {
-        return numeros[0][NUMERO_DE_COLUMNAS - 1] == 0 &&
-                numeros[NUMERO_DE_COLUMNAS - 1][NUMERO_DE_COLUMNAS - 1] == 0 &&
-                numeros[NUMERO_DE_COLUMNAS - 1][0] == 0 &&
-                numeros[0][0] == 0;
+        return numerosDeLaTabla[0][NUMERO_DE_COLUMNAS - 1] == 0 &&
+                numerosDeLaTabla[NUMERO_DE_COLUMNAS - 1][NUMERO_DE_COLUMNAS - 1] == 0 &&
+                numerosDeLaTabla[NUMERO_DE_COLUMNAS - 1][0] == 0 &&
+                numerosDeLaTabla[0][0] == 0;
     }
 
     private boolean algunaDiagonalEstaCompleta() {
         int contadorDeCeros = 0;
         for (int i = 0; i < NUMERO_DE_COLUMNAS; i++) {
-            if (numeros[i][i] == 0) {
+            if (numerosDeLaTabla[i][i] == 0) {
                 contadorDeCeros++;
             }
         }
@@ -89,7 +89,7 @@ public class TablaDeBingo extends Thread {
         }
 
         for (int i = 0; i < NUMERO_DE_COLUMNAS; i++) {
-            if (numeros[i][4 - i] == 0) {
+            if (numerosDeLaTabla[i][4 - i] == 0) {
                 contadorDeCeros++;
             }
         }
@@ -101,7 +101,7 @@ public class TablaDeBingo extends Thread {
 
         for (int i = 0; i < NUMERO_DE_FILAS; i++) {
             for (int j = 0; j < NUMERO_DE_COLUMNAS; j++) {
-                if (numeros[i][j] == 0) {
+                if (numerosDeLaTabla[i][j] == 0) {
                     contadorDeCeros++;
                 }
             }
@@ -115,7 +115,7 @@ public class TablaDeBingo extends Thread {
 
         for (int i = 0; i < NUMERO_DE_COLUMNAS; i++) {
             for (int j = 0; j < NUMERO_DE_FILAS; j++) {
-                if (numeros[i][j] == 0) {
+                if (numerosDeLaTabla[i][j] == 0) {
                     contadorDeCeros++;
                 }
             }
@@ -132,7 +132,7 @@ public class TablaDeBingo extends Thread {
     private boolean estaTodaLaTablaMarcada() {
         for (int i = 0; i < NUMERO_DE_FILAS; i++) {
             for (int j = 0; j < NUMERO_DE_COLUMNAS; j++) {
-                if (numeros[i][j] != 0) {
+                if (numerosDeLaTabla[i][j] != 0) {
                     return false;
                 }
             }
@@ -143,8 +143,8 @@ public class TablaDeBingo extends Thread {
     private void marcarNumeroAleatorioEnLaTabla() {
         for (int i = 0; i < NUMERO_DE_FILAS; i++) {
             for (int j = 0; j < NUMERO_DE_COLUMNAS; j++) {
-                if (numeros[i][j] == numeroAleatorioObtenido) {
-                    numeros[i][j] = 0;
+                if (numerosDeLaTabla[i][j] == numeroAleatorioObtenido) {
+                    numerosDeLaTabla[i][j] = 0;
                 }
             }
         }
@@ -163,7 +163,7 @@ public class TablaDeBingo extends Thread {
         String auxiliarParaMostrarLosNumeros = "";
         for (int i = 0; i < NUMERO_DE_COLUMNAS; i++) {
             for (int j = 0; j < NUMERO_DE_FILAS; j++) {
-                auxiliarParaMostrarLosNumeros += numeros[j][i] + "\t";
+                auxiliarParaMostrarLosNumeros += numerosDeLaTabla[j][i] + "\t";
             }
             auxiliarParaMostrarLosNumeros += '\n';
         }

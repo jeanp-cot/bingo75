@@ -19,7 +19,7 @@ public class Main {
             Integer numeroQueSalioDelBombo = obtenerUnNumeroNuevo(numerosQueHanSalido);
 
             tablasDeBingo.get(0).setNumeroDelLocutor(numeroQueSalioDelBombo);
-
+            System.out.println(numerosQueHanSalido);
             System.out.println(numeroQueSalioDelBombo);
             System.out.println("Vuelta #" + i);
             System.out.println(tablasDeBingo);
