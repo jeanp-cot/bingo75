@@ -1,2 +1,8 @@
-package PACKAGE_NAME;public enum FormaDeGanar {
+public enum FormaDeGanar {
+    DIAGONAL,
+    LINEA,
+    CUATRO_ESQUINAS,
+    CARTON_COMPLETO;
+
+
 }
