@@ -2,7 +2,7 @@ public enum FormaDeGanar {
     DIAGONAL,
     LINEA,
     CUATRO_ESQUINAS,
-    CARTON_COMPLETO;
+    CARTON_COMPLETO
 
 
 }
